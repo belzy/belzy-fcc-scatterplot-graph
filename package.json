@@ -1,0 +1,28 @@
+{
+  "name": "belzy-fcc-scatterplot-graph",
+  "version": "1.0.0",
+  "description": "<h3>Data Visualization Projects - Visualize Data with a Scatterplot Graph</h3>\r <br>\r <strong>Staging:</strong> https://belzy-fcc-scatterplot-graph-st.herokuapp.com/\r <br>\r <strong>Production:</strong> https://belzy-fcc-scatterplot-graph.herokuapp.com/",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/belzy/belzy-fcc-scatterplot-graph.git"
+  },
+  "keywords": [],
+  "author": "Brandon G. Elzy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/belzy/belzy-fcc-scatterplot-graph/issues"
+  },
+  "homepage": "https://github.com/belzy/belzy-fcc-scatterplot-graph#readme",
+  "dependencies": {
+    "express.js": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
