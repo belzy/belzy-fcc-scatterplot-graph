@@ -20,8 +20,6 @@
 
     getData(data => {
 
-        // console.log(data);
-
         const graph_dataset = data.map(({Year, Seconds, Time}) => {
             
             const timeArr = Time.split(':').map(e => parseInt(e));
@@ -82,6 +80,40 @@
             .attr('cx', (d, i) => scaleX(d[0]))
             .attr('cy', d => scaleY(d[1]))
             .attr('r', 6)
+            .attr('data-circle-number', (d, i) => i)
+
+            // Tooltip
+            .on('mouseenter', (d, i) => {
+
+                // rect.top, rect.right, rect.bottom, rect.left
+                const rect = document.querySelector(`[data-circle-number="${i}"]`).getBoundingClientRect();
+
+                const topOffset = -20;
+                const leftOffset = 40;
+
+                const tooltip = d3.select('#tooltip')
+                    .style('top', `${rect.top + topOffset}px`)
+                    .style('left', `${rect.left + leftOffset}px`)
+                    .style('opacity', '0.7')
+                    .attr('data-year', data[i]['Year'])
+                
+                tooltip.select('#tooltip-rider')
+                    .text((d) => `${data[i]['Name']}: ${data[i]['Nationality']}`)
+
+                tooltip.select('#tooltip-data')
+                    .text((d) => `Year: ${data[i]['Year']}, Time: ${data[i]['Time']}`)
+
+                tooltip.select('#tooltip-doping')
+                    .text((d) => `${data[i]['Doping'] === "" ? "No Doping Allegations" : data[i]['Doping']}`)
+
+
+
+
+            })
+            .on('mouseout', (d, i) => {
+                d3.select('#tooltip')
+                    .style('opacity', '0.0')
+            })
 
         // Legend
         const legend = svg.append('g')
@@ -94,8 +126,6 @@
         const legendElementM = 5;   // Margin
         const textHorizOffset = 30;  // Text Horizontal Offset
         const textVertOffset = 17;   // Text Vertical Offset
-
-
         
         // Allegations
         legend.append('rect')
@@ -126,9 +156,6 @@
             .attr('y', legendElementY + legendElementH + legendElementM + textVertOffset)
             .text('Riders with doping allegations')
             .style('font-size', '14px')
-
-            
-
             
     });
 
